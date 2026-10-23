@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rise 15.1 Volleyball</title>
+<title>Rise 15.1 Volleyball 2026</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f6f8;color:#171717}
 header{background:#111;color:#fff;padding:34px 20px}.wrap,main{max-width:900px;margin:auto}h1{margin:0 0 8px;font-size:clamp(26px,5vw,42px)}header p{margin:0;color:#d7d7d7}main{padding:25px 20px 50px}h2{font-size:20px}
@@ -38,7 +38,7 @@ function setOptions(select,entries,allLabel){select.replaceChildren(new Option(a
 function goToDates(){state.selectedDate=null;$('datesView').classList.remove('hidden');$('clipsView').classList.add('hidden');history.replaceState(null,'',location.pathname);window.scrollTo(0,0)}
 function openDate(key){state.selectedDate=key;$('datesView').classList.add('hidden');$('clipsView').classList.remove('hidden');$('selectedDate').textContent=displayDate(key);const games=state.byDate.get(key)||[];const dateClips=state.clips.filter(c=>games.some(g=>g.id===c.gameId));$('dateSummary').textContent=`${games.length} match${games.length===1?'':'es'} · ${dateClips.length} player-tagged clips`;
 setOptions($('gameFilter'),games.map(g=>[g.id,gameTitle(g)]),'All matches');
-const players=state.roster.filter(p=>p.claimedPlayerId).sort((a,b)=>Number(a.jerseyNum)-Number(b.jerseyNum);
+const players=state.roster.filter(p=>p.claimedPlayerId).sort((a,b)=>Number(a.jerseyNum)-Number(b.jerseyNum));
 setOptions($('playerFilter'),players.map(p=>[p.claimedPlayerId,`#${p.jerseyNum} ${p.name}`]),'All players');
 const tags=[...new Set(dateClips.flatMap(c=>c.playTypes||[c.playType]).filter(Boolean))].sort();setOptions($('typeFilter'),tags.map(t=>[t,t]),'All play types');$('searchFilter').value='';renderClips();history.replaceState(null,'','#date='+encodeURIComponent(key));window.scrollTo(0,0)}
 function renderClips(){const games=state.byDate.get(state.selectedDate)||[];const ids=new Set(games.map(g=>g.id));const game=$('gameFilter').value,player=$('playerFilter').value,type=$('typeFilter').value,q=$('searchFilter').value.toLowerCase().trim();const rows=state.clips.filter(c=>ids.has(c.gameId)&&(!game||c.gameId===game)&&(!player||c.playerId===player)&&(!type||(c.playTypes||[c.playType]).includes(type))&&(!q||[c.playerName,gameTitle(state.gameById.get(c.gameId)||{}),...(c.playTypes||[])].join(' ').toLowerCase().includes(q)));
@@ -46,9 +46,11 @@ $('resultCount').textContent=`Showing ${rows.length} clip${rows.length===1?'':'s
 function renderDates(){const root=$('dates');root.replaceChildren();const dates=[...state.byDate.keys()].sort().reverse();$('status').textContent=`${dates.length} match dates · ${state.games.length} scheduled games · ${state.clips.length} player-tagged clips`;for(const key of dates){const games=state.byDate.get(key),ids=new Set(games.map(g=>g.id)),clips=state.clips.filter(c=>ids.has(c.gameId));const button=create('button','match'),left=create('div'),right=create('div','open','View clips →');left.append(create('div','date',displayDate(key)));left.append(create('div','details',`${games.length} match${games.length===1?'':'es'} · ${clips.length} player-tagged clips · ${games.map(gameTitle).join(' / ')}`));button.append(left,right);button.addEventListener('click',()=>openDate(key));root.append(button)}if(!dates.length)root.append(create('p','muted','No scheduled games found.'))}
 async function load(){try{const [g,c,r]=await Promise.all(['data/games.json','data/clips.json','data/roster.json'].map(async path=>{const res=await fetch(path,{cache:'no-cache'});if(!res.ok)throw new Error(`${path}: HTTP ${res.status}`);return res.json()}));if(!Array.isArray(g.games)||!Array.isArray(c.clips)||!Array.isArray(r.players))throw new Error('Unexpected data format');state.games=g.games;state.clips=c.clips;state.roster=r.players;
 $('rosterSummary').textContent=`${state.roster.length} rostered players · ${state.roster.filter(p=>p.claimedPlayerId).length} claimed profiles`;
-const rosterCards=$('rosterCards');rosterCards.replaceChildren();
+const rosterCards=$('rosterCards');
+rosterCards.replaceChildren();
 for(const p of [...state.roster].sort((a,b)=>Number(a.jerseyNum)-Number(b.jerseyNum))){
-const card=create('span','tag',`#${p.jerseyNum} ${p.name}${p.claimedPlayerId?'':' · Unclaimed'}`);rosterCards.append(card)}
+  rosterCards.append(create('span','tag',`#${p.jerseyNum} ${p.name}${p.claimedPlayerId?'':' · Unclaimed'}`));
+}
 state.gameById=new Map(state.games.map(game=>[game.id,game]));for(const game of state.games){const key=localDateKey(game.scheduleTsStart);if(!key)continue;if(!state.byDate.has(key))state.byDate.set(key,[]);state.byDate.get(key).push(game)}renderDates();const key=new URLSearchParams(location.hash.slice(1)).get('date');if(key&&state.byDate.has(key))openDate(key)}catch(err){$('status').className='error';$('status').textContent=`Unable to load match data: ${err.message}. Confirm the data files exist and GitHub Pages is serving this repository.`;console.error(err)}}
 $('back').addEventListener('click',goToDates);['gameFilter','playerFilter','typeFilter','searchFilter'].forEach(id=>$(id).addEventListener('input',renderClips));window.addEventListener('hashchange',()=>{const key=new URLSearchParams(location.hash.slice(1)).get('date');if(key&&state.byDate.has(key))openDate(key);else if(!key)goToDates()});load();
 </script>
