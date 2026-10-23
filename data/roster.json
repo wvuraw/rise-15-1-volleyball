@@ -2,6 +2,13 @@
   "players": [
     {
       "claimedPlayerId": "",
+      "id": "Zj9A-TpSh01-mad-RLbFMXnvrgah",
+      "isActive": true,
+      "jerseyNum": "13",
+      "name": "Madison Williams"
+    },
+    {
+      "claimedPlayerId": "",
       "id": "YkEs-TpSh01-ale-kkV01Vpm2jh8",
       "isActive": true,
       "jerseyNum": "",
@@ -48,13 +55,6 @@
       "isActive": true,
       "jerseyNum": "",
       "name": "Madison Hall"
-    },
-    {
-      "claimedPlayerId": "",
-      "id": "Zj9A-TpSh01-mad-RLbFMXnvrgah",
-      "isActive": true,
-      "jerseyNum": "",
-      "name": "Madison Williams"
     },
     {
       "claimedPlayerId": "",
