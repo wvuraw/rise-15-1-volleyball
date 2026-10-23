@@ -1,4 +1,75 @@
 {
-  "teamId": "xyJr-TmSh01-ris-EGHORMSTMvVS",
-  "players": []
+  "players": [
+    {
+      "claimedPlayerId": "",
+      "id": "YkEs-TpSh01-ale-kkV01Vpm2jh8",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Alexis Hostetler"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "ZgEd-TpSh01-ann-BwBs2J2c6cdS",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Anna Estep"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "QjES-TpSh01-bla-HFLM9I6fKCIY",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Blake Badila"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "dcE3-TpSh01-gil-p95eET8OHfla",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Gillian Corwin"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "0w0D-TpSh01-gio-C3CfLduzqBzd",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Giovanna Bianco"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "1HVN-TpSh01-jos-2yuFR0v6FPML",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Josie Bills"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "lXB3-TpSh01-mad-P9b2PjGdLYGw",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Madison Hall"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "Zj9A-TpSh01-mad-RLbFMXnvrgah",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Madison Williams"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "dzc2-TpSh01-sav-mdaUKY09tdyo",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Savanna Edge"
+    },
+    {
+      "claimedPlayerId": "",
+      "id": "3Cmq-TpSh01-tay-h1P98bi6H8qw",
+      "isActive": true,
+      "jerseyNum": "",
+      "name": "Tayla Arbonaise"
+    }
+  ],
+  "teamId": "xyJr-TmSh01-ris-EGHORMSTMvVS"
 }
